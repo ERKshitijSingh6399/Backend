@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.model.Admin;
 import com.app.model.Farmer;
 import com.app.model.Products;
 import com.app.service.FarmerCrudServices;
@@ -24,6 +25,25 @@ public class Controller {
 	@Autowired
 	private FarmerCrudServices service;
 	private ProductCrudServices pservice;
+	
+	@PostMapping("/logincheck")
+	public boolean checklogincredentials(@RequestBody Admin user)
+	{
+		Farmer f=service.getAccountInfo(user.getId());
+		if(f!=null)
+		{
+		if((user.getId()==f.getId()) && (user.getPassword().equals(f.getPassword())))
+			return true;
+		else
+			{System.out.println("Wrong password");
+			return false;}
+		}
+		else
+		{
+			System.out.println("Does not exist");
+			return false;
+		}
+	}
 	
 	@PostMapping("/registerfarmer")
 	public Farmer registerFarmer(@RequestBody Farmer farmer)

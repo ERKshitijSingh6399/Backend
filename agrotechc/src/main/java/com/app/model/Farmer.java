@@ -39,4 +39,10 @@ private List<Cart> cartList=new ArrayList<>();
 @OneToMany(mappedBy = "farmerquery")
 private List<Queries> queryList=new ArrayList<>();
 
+public int getId() {
+	return farmerId;
+}
+public String getPassword() {
+	return password;
+}
 }

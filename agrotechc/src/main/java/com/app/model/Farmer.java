@@ -42,6 +42,9 @@ private List<Queries> queryList=new ArrayList<>();
 public int getId() {
 	return farmerId;
 }
+public String getEmail() {
+	return email;
+}
 public String getPassword() {
 	return password;
 }

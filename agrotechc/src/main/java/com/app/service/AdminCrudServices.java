@@ -1,9 +1,11 @@
 package com.app.service;
 
-import com.app.model.Admin;
+import com.app.model.Admins;
 
 public interface AdminCrudServices {
 
-	Admin addAdmin(Admin admin);
-	void deleteAdmin(int id);
+	Admins addAdmin(Admins admins);
+	void deleteAdmin(int adminsid);
+	Admins getAccountInfo(String id);
+	
 }

@@ -7,5 +7,6 @@ public interface FarmerCrudServices {
 	Farmer addFarmer(Farmer farmer);
 	Farmer updateFarmer(Farmer farmer);
 	Farmer getAccountInfo(int id);
+	Farmer getAccountInfoByEmail(String email);
 	void deleteFarmer(int id);
 }

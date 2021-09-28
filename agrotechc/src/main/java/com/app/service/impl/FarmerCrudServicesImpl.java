@@ -37,4 +37,10 @@ public class FarmerCrudServicesImpl implements FarmerCrudServices{
 		repository.deleteById(id);
 	}
 
+	@Override
+	public Farmer getAccountInfoByEmail(String email) {
+		// TODO Auto-generated method stub
+		return repository.findByEmail(email);
+	}
+
 }

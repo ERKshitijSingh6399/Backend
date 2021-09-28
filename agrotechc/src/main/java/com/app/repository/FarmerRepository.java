@@ -6,4 +6,5 @@ import com.app.model.Farmer;
 
 public interface FarmerRepository extends JpaRepository<Farmer, Integer>{
 
+	Farmer findByEmail(String email);
 }

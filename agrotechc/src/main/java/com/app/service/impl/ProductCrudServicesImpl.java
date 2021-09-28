@@ -18,5 +18,25 @@ public class ProductCrudServicesImpl implements ProductCrudServices{
 		// TODO Auto-generated method stub
 		return repository.findAll();
 	}
+	@Override
+	public Products addProduct(Products product) {
+		// TODO Auto-generated method stub
+		return repository.save(product);
+	}
+	@Override
+	public Products updateProduct(Products product) {
+		// TODO Auto-generated method stub
+		return repository.save(product);
+	}
+	@Override
+	public Products getProductInfo(int productid) {
+		// TODO Auto-generated method stub
+		return repository.findById(productid).get();
+	}
+	@Override
+	public void deleteProduct(int productid) {
+		// TODO Auto-generated method stub
+		repository.deleteById(productid);
+	}
 
 }

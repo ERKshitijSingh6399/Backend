@@ -1,20 +1,34 @@
 package com.app.service.impl;
 
-import com.app.model.Admin;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.app.model.Admins;
+import com.app.repository.AdminRepository;
 import com.app.service.AdminCrudServices;
 
+@Service
 public class AdminCrudServicesImpl implements AdminCrudServices{
 
+	@Autowired
+	private AdminRepository repository;
+	
 	@Override
-	public Admin addAdmin(Admin admin) {
+	public Admins addAdmin(Admins admins) {
 		// TODO Auto-generated method stub
-		return null;
+		return repository.save(admins);
 	}
 
 	@Override
-	public void deleteAdmin(int id) {
+	public void deleteAdmin(int adminsid) {
 		// TODO Auto-generated method stub
-		
+		repository.deleteById(adminsid);
+	}
+
+	@Override
+	public Admins getAccountInfo(String id) {
+		// TODO Auto-generated method stub
+		return repository.findByUserid(id);
 	}
 
 }

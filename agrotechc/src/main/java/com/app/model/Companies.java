@@ -22,6 +22,7 @@ public class Companies {
 @GeneratedValue
 private int companyId;
 private String companyName;
+private String quantity;
 @ManyToOne
 @JoinColumn(name = "cropId") //here creates a foreign key named cropid
 private Crops crop;

@@ -2,8 +2,8 @@ package com.app.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.app.model.Farmer;
+import com.app.model.Crops;
 
-public interface CropsRepository extends JpaRepository<Farmer, Integer>{
+public interface CropsRepository extends JpaRepository<Crops, Integer>{
 
 }

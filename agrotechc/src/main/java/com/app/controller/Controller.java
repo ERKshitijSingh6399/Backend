@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.model.Admin;
+import com.app.model.Admins;
 import com.app.model.Farmer;
+import com.app.model.Information;
 import com.app.model.Products;
 import com.app.service.FarmerCrudServices;
+import com.app.service.InformationCrudServices;
 import com.app.service.ProductCrudServices;
 
 @RestController
@@ -24,24 +26,27 @@ public class Controller {
 
 	@Autowired
 	private FarmerCrudServices service;
+	@Autowired
 	private ProductCrudServices pservice;
+	@Autowired
+	private InformationCrudServices iservice;
 	
 	@PostMapping("/logincheck")
-	public boolean checklogincredentials(@RequestBody Admin user)
+	public Farmer checklogincredentials(@RequestBody Admins user)
 	{
-		Farmer f=service.getAccountInfo(user.getId());
+		Farmer f=service.getAccountInfoByEmail(user.getId());
 		if(f!=null)
 		{
-		if((user.getId()==f.getId()) && (user.getPassword().equals(f.getPassword())))
-			return true;
+		if((user.getId().equals(f.getEmail())) && (user.getPassword().equals(f.getPassword())))
+			return f;
 		else
 			{System.out.println("Wrong password");
-			return false;}
+			return null;}
 		}
 		else
 		{
 			System.out.println("Does not exist");
-			return false;
+			return null;
 		}
 	}
 	
@@ -73,5 +78,11 @@ public class Controller {
 	public List<Products> getAllProducts() {
 		// TODO Auto-generated method stub
 		return pservice.getAllProducts();
+	}
+	
+	@GetMapping("/getallinformation")
+	public List<Information> getAllInformation() {
+		// TODO Auto-generated method stub
+		return iservice.getAllInformation();
 	}
 }

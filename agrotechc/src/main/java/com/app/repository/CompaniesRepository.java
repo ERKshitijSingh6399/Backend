@@ -2,8 +2,8 @@ package com.app.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.app.model.Farmer;
+import com.app.model.Companies;
 
-public interface CompaniesRepository extends JpaRepository<Farmer, Integer>{
+public interface CompaniesRepository extends JpaRepository<Companies, Integer>{
 
 }

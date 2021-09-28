@@ -1,6 +1,7 @@
 package com.app.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -15,11 +16,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Admins {
 @Id
-private String id ; //email fro farmer , alphanumeric id for admin
+@GeneratedValue
+private int id;
+private String adminId ; //email for farmer , alphanumeric id for admin
 private String password;
 
 public String getId() {
-	return id;
+	return adminId;
 }
 public String getPassword() {
 	return password;

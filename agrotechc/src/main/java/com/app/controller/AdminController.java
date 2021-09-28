@@ -41,11 +41,11 @@ public class AdminController {
 	@PostMapping("/adminlogin")
 	public Admins checkadminlogincredentials(@RequestBody Admins user)
 	{
-		Admins f=aservice.getAccountInfo(user.getId());
-		if(f!=null)
+		Admins a=aservice.getAccountInfo(user.getId());
+		if(a!=null)
 		{
-		if((user.getId()==f.getId()) && (user.getPassword().equals(f.getPassword())))
-			return f;
+		if((user.getId()==a.getId()) && (user.getPassword().equals(a.getPassword())))
+			return a;
 		else
 			{System.out.println("Wrong password");
 			return null;}

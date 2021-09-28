@@ -6,6 +6,6 @@ public interface AdminCrudServices {
 
 	Admins addAdmin(Admins admins);
 	void deleteAdmin(int adminsid);
-	Admins getAccountInfo(String id);
+	Admins getAccountInfo(String adminid);
 	
 }

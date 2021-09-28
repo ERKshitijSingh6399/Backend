@@ -6,5 +6,5 @@ import com.app.model.Admins;
 
 public interface AdminRepository extends JpaRepository<Admins, Integer>{
 
-	Admins findByUserid(String id);
+	Admins findByAdminId(String adminid);
 }

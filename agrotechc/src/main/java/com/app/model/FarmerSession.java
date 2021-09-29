@@ -1,7 +1,5 @@
 package com.app.model;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,18 +13,12 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name="queries")
+@Table(name="Farmersession")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Queries {
-@Id
-@GeneratedValue
-private int queryId;
+public class FarmerSession {
 @ManyToOne
 @JoinColumn(name = "farmerId")
-private Farmer farmerquery;
-private String dateQuery;
-private String question;
-private String answer;
-private String status;
+private Farmer farmersession;
+private String lastLogout;
 }

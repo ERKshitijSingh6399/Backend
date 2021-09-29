@@ -28,7 +28,7 @@ public class AdminCrudServicesImpl implements AdminCrudServices{
 	@Override
 	public Admins getAccountInfo(String adminid) {
 		// TODO Auto-generated method stub
-		return repository.findByUserid(adminid);
+		return repository.findByAdminId(adminid);
 	}
 
 }

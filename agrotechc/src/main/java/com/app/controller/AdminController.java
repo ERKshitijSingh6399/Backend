@@ -14,12 +14,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.model.Admins;
 import com.app.model.Companies;
+import com.app.model.Farmer;
 import com.app.model.Information;
+import com.app.model.Orders;
 import com.app.model.Products;
 import com.app.service.AdminCrudServices;
 import com.app.service.CompaniesCrudServices;
 import com.app.service.FarmerCrudServices;
+import com.app.service.FarmerSearchServices;
 import com.app.service.InformationCrudServices;
+import com.app.service.OrdersCrudServices;
 import com.app.service.ProductCrudServices;
 
 @RestController
@@ -37,6 +41,10 @@ public class AdminController {
 	private CompaniesCrudServices cmpservice;
 	@Autowired
 	private AdminCrudServices aservice;
+	@Autowired
+	private  OrdersCrudServices oservice;
+	@Autowired
+	private FarmerSearchServices fsearchservice;
 	
 	@PostMapping("/adminlogin")
 	public Admins checkadminlogincredentials(@RequestBody Admins user)
@@ -94,4 +102,32 @@ public class AdminController {
 		// TODO Auto-generated method stub
 		cmpservice.deleteCompanyDemandItem(companyid);;
 	}
+	
+	@GetMapping("/orderstatus")
+	public List<Orders> getAllOrders(int id) {
+		return oservice.getOrdersByFarmerId(id);
+	}
+	
+	@GetMapping("/getfarmersbyname/{name}")
+	public List<Farmer> getFarmersByName(@PathVariable String name){
+		return fsearchservice.filterByName(name);
+	}
+	
+	@GetMapping("/getfarmersbyage/{age}")
+	public List<Farmer> getFarmersByAge(@PathVariable int age){
+		return fsearchservice.filterByAge(age);
+	}
+	@GetMapping("/getfarmersbylandsize/{landsize}")
+	public List<Farmer> getFarmersByLandSize(@PathVariable String landsize){
+		return fsearchservice.filterByLandSize(landsize);
+	}
+	@GetMapping("/getfarmersbygender/{gender}")
+	public List<Farmer> getFarmersByGender(@PathVariable String gender){
+		return fsearchservice.filterByGender(gender);
+	}
+	
+	
+	
+	
+	
 }

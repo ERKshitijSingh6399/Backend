@@ -24,6 +24,9 @@ public class Products {
 private int productId;
 private String productName;
 private double productPrice;
+private String quantity;
+private String productCompanyName;
+private String image;
 @OneToMany(mappedBy = "productorder")
 private List<Orders> orderList=new ArrayList<>();
 @OneToMany(mappedBy = "productcart")

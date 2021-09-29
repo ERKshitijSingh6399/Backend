@@ -1,5 +1,7 @@
 package com.app.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +31,12 @@ public class CartCrudServicesImpl implements CartCrudServices{
 	public void deleteCartItem(int cartid) {
 		// TODO Auto-generated method stub
 		repository.deleteById(cartid);
+	}
+
+	@Override
+	public List<Cart> getMyCart(int id) {
+		// TODO Auto-generated method stub
+		return repository.findAllByFarmerId(id);
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.app.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,16 +27,17 @@ public class OrdersCrudServicesImpl implements OrdersCrudServices{
 //		return repository.save(orders);
 //	}
 
-	@Override
-	public Orders getOrdersById(int ordersid) {
-		// TODO Auto-generated method stub
-		return repository.findById(ordersid).get();
-	}
 
 	@Override
 	public void deleteOrdersById(int ordersid) {
 		// TODO Auto-generated method stub
 		repository.deleteById(ordersid);
+	}
+
+	@Override
+	public List<Orders> getOrdersByFarmerId(int id) {
+		// TODO Auto-generated method stub
+		return repository.findAllByFarmerId(id);
 	}
 
 }

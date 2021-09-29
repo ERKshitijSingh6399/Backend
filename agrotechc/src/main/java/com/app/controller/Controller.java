@@ -13,23 +13,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.model.Admins;
+import com.app.model.Cart;
 import com.app.model.Farmer;
 import com.app.model.Information;
+import com.app.model.Orders;
 import com.app.model.Products;
+import com.app.model.Queries;
+import com.app.service.CartCrudServices;
 import com.app.service.FarmerCrudServices;
 import com.app.service.InformationCrudServices;
+import com.app.service.OrdersCrudServices;
 import com.app.service.ProductCrudServices;
+import com.app.service.QueryCrudServices;
 
 @RestController
 @RequestMapping("/farmer")
 public class Controller {
 
 	@Autowired
+	private CartCrudServices cservice;
+	@Autowired
 	private FarmerCrudServices service;
 	@Autowired
 	private ProductCrudServices pservice;
 	@Autowired
 	private InformationCrudServices iservice;
+	@Autowired
+	private OrdersCrudServices oservice;
+	@Autowired
+	private QueryCrudServices qservice;
 	
 	@PostMapping("/logincheck")
 	public Farmer checklogincredentials(@RequestBody Admins user)
@@ -84,5 +96,53 @@ public class Controller {
 	public List<Information> getAllInformation() {
 		// TODO Auto-generated method stub
 		return iservice.getAllInformation();
+	}
+	@GetMapping("/orderstatus")
+	public List<Orders> getAllOrders(int id) {
+		return oservice.getOrdersByFarmerId(id);
+	}
+	
+	@PostMapping("/addtocart")
+	public Cart addToCart(@RequestBody Cart cart) {
+		return cservice.addCartItem(cart);
+	}
+
+	@PostMapping("/askquery")
+	public Queries askQuery(@RequestBody Queries query)
+	{
+		return qservice.addQuery(query);
+	}
+	
+	@GetMapping("/getallqueries")
+	public List<Queries> getAllQueries() {
+		// TODO Auto-generated method stub
+		return qservice.getAllQueries();
+	}
+	
+	@GetMapping("/getmyqueries")
+	public List<Queries> getMyQueries(int id) {
+		// TODO Auto-generated method stub
+		return qservice.getMyQueries(id);
+	}
+	@DeleteMapping("/deletemyquery/{queryId}")
+	public void deleteMyQuery(@PathVariable int queryId) {
+		// TODO Auto-generated method stub
+		qservice.deleteQueries(queryId);
+	}
+	@PostMapping("/viewmycart/{farmerid}")
+	public List<Cart> viewMyCart(@PathVariable int farmerid){
+		return cservice.getMyCart(farmerid);
+	}
+	
+	@PostMapping("/carttoorders/{cartid}")
+	public Orders cartToOrders(@PathVariable int cartid) {
+		
+		Cart c=cservice.getCartInfo(cartid);
+		Orders o=new Orders();
+		o.setOrdersStatus("OnItsWay");
+		o.setFarmerorder(c.getFarmercart());
+		o.setProductorder(c.getProductcart());
+		cservice.deleteCartItem(cartid);
+		return oservice.addOrder(o);
 	}
 }

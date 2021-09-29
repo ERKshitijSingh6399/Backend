@@ -44,12 +44,12 @@ public class Controller {
 	private QueryCrudServices qservice;
 	
 	@PostMapping("/logincheck")
-	public Farmer checklogincredentials(@RequestBody Admins user)
+	public Farmer checklogincredentials(@RequestBody Farmer user) throws Exception
 	{
-		Farmer f=service.getAccountInfoByEmail(user.getId());
+		Farmer f=service.getAccountInfoByEmail(user.getEmail());
 		if(f!=null)
 		{
-		if((user.getId().equals(f.getEmail())) && (user.getPassword().equals(f.getPassword())))
+		if((user.getEmail().equals(f.getEmail())) && (user.getPassword().equals(f.getPassword())))
 			return f;
 		else
 			{System.out.println("Wrong password");

@@ -28,7 +28,7 @@ private double productPrice;
 private String quantity;
 private String productCompanyName;
 private String image;
-@OneToMany(mappedBy = "productorder")
+@OneToMany(mappedBy = "productOrder")
 private List<Orders> orderList=new ArrayList<>();
 @OneToMany(mappedBy = "productcart")
 private List<Cart> cartList=new ArrayList<>();

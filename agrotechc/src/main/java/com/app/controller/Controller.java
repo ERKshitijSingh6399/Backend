@@ -97,9 +97,9 @@ public class Controller {
 		// TODO Auto-generated method stub
 		return iservice.getAllInformation();
 	}
-	@GetMapping("/orderstatus")
+	@GetMapping("/myorderstatus")
 	public List<Orders> getAllOrders(int id) {
-		return oservice.getOrdersByFarmerId(id);
+		return oservice.getOrdersByFarmerId(service.getAccountInfo(id));
 	}
 	
 	@PostMapping("/addtocart")
@@ -122,7 +122,7 @@ public class Controller {
 	@GetMapping("/getmyqueries")
 	public List<Queries> getMyQueries(int id) {
 		// TODO Auto-generated method stub
-		return qservice.getMyQueries(id);
+		return qservice.getMyQueries(service.getAccountInfo(id));
 	}
 	@DeleteMapping("/deletemyquery/{queryId}")
 	public void deleteMyQuery(@PathVariable int queryId) {
@@ -131,7 +131,7 @@ public class Controller {
 	}
 	@PostMapping("/viewmycart/{farmerid}")
 	public List<Cart> viewMyCart(@PathVariable int farmerid){
-		return cservice.getMyCart(farmerid);
+		return cservice.getMyCart(service.getAccountInfo(farmerid));
 	}
 	
 	@PostMapping("/carttoorders/{cartid}")
@@ -140,8 +140,8 @@ public class Controller {
 		Cart c=cservice.getCartInfo(cartid);
 		Orders o=new Orders();
 		o.setOrdersStatus("OnItsWay");
-		o.setFarmerorder(c.getFarmercart());
-		o.setProductorder(c.getProductcart());
+		o.setFarmerOrder(c.getFarmerCart());
+		o.setProductOrder(c.getProductcart());
 		cservice.deleteCartItem(cartid);
 		return oservice.addOrder(o);
 	}

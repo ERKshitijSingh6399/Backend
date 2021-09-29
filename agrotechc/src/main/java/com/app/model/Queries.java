@@ -23,7 +23,7 @@ public class Queries {
 private int queryId;
 @ManyToOne
 @JoinColumn(name = "farmerId")
-private Farmer farmerquery;
+private Farmer farmerQuery;
 private String dateQuery;
 private String question;
 private String answer;

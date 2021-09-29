@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.model.Cart;
+import com.app.model.Farmer;
 import com.app.repository.CartRepository;
 import com.app.service.CartCrudServices;
 
@@ -34,9 +35,9 @@ public class CartCrudServicesImpl implements CartCrudServices{
 	}
 
 	@Override
-	public List<Cart> getMyCart(int id) {
+	public List<Cart> getMyCart(Farmer f) {
 		// TODO Auto-generated method stub
-		return repository.findAllByFarmerId(id);
+		return repository.findByFarmerCart(f);
 	}
 
 }

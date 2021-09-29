@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.app.model.Farmer;
 import com.app.model.Queries;
 import com.app.repository.QueryRepository;
 import com.app.service.QueryCrudServices;
@@ -28,9 +29,9 @@ public class QueriesCrudServicesImpl implements QueryCrudServices{
 	}
 
 	@Override
-	public List<Queries> getMyQueries(int id) {
+	public List<Queries> getMyQueries(Farmer f) {
 		// TODO Auto-generated method stub
-		return repository.findByFarmerId(id);
+		return repository.findByFarmerQuery(f);
 	}
 
 	@Override

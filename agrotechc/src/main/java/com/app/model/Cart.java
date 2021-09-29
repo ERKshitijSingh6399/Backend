@@ -25,7 +25,7 @@ public class Cart {
 private int cartId;
 @ManyToOne
 @JoinColumn(name = "farmerId") //a foreign key by name farmerId
-private Farmer farmercart;
+private Farmer farmerCart;
 
 @ManyToOne
 @JoinColumn(name = "productId")

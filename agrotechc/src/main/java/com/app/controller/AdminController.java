@@ -103,9 +103,9 @@ public class AdminController {
 		cmpservice.deleteCompanyDemandItem(companyid);;
 	}
 	
-	@GetMapping("/orderstatus")
-	public List<Orders> getAllOrders(int id) {
-		return oservice.getOrdersByFarmerId(id);
+	@GetMapping("/allorderstatus")
+	public List<Orders> getAllOrders() {
+		return oservice.getAllOrders();
 	}
 	
 	@GetMapping("/getfarmersbyname/{name}")

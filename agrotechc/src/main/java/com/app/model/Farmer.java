@@ -33,11 +33,11 @@ private String landAddress;
 private String email;
 private String landSize;
 private String gender;
-@OneToMany(mappedBy = "farmerorder")
+@OneToMany(mappedBy = "farmerOrder")
 private List<Orders> orderList=new ArrayList<>();
-@OneToMany(mappedBy = "farmercart")
+@OneToMany(mappedBy = "farmerCart")
 private List<Cart> cartList=new ArrayList<>();
-@OneToMany(mappedBy = "farmerquery")
+@OneToMany(mappedBy = "farmerQuery")
 private List<Queries> queryList=new ArrayList<>();
 
 public int getId() {

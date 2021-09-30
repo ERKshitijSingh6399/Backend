@@ -108,6 +108,10 @@ public class Controller {
 		return pservice.getAllProducts();
 	}
 	
+	@GetMapping("/getproductbyid/{productid}")
+	public Products getProductById(@PathVariable int productid) {
+		return pservice.getProductInfo(productid);
+	}
 	//**********************************************Information method
 	@GetMapping("/getallinformation")
 	public List<Information> getAllInformation() {

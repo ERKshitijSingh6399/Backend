@@ -9,4 +9,5 @@ public interface FarmerSearchServices {
 	List<Farmer> filterByAge(int age);
 	List<Farmer> filterByLandSize(String landsize);
 	List<Farmer> filterByGender(String gender);
+	List<Farmer> getAllFarmers();
 }

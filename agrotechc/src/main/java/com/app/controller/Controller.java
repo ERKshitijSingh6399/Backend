@@ -3,6 +3,7 @@ package com.app.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.model.Admins;
 import com.app.model.Cart;
 import com.app.model.Farmer;
 import com.app.model.Information;
@@ -26,6 +26,7 @@ import com.app.service.OrdersCrudServices;
 import com.app.service.ProductCrudServices;
 import com.app.service.QueryCrudServices;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/farmer")
 public class Controller {
@@ -47,19 +48,20 @@ public class Controller {
 	public Farmer checklogincredentials(@RequestBody Farmer user) throws Exception
 	{
 		Farmer f=service.getAccountInfoByEmail(user.getEmail());
+		Farmer f1=new Farmer();
 		if(f!=null)
 		{
 		if((user.getEmail().equals(f.getEmail())) && (user.getPassword().equals(f.getPassword())))
-			return f;
+			f1=f;
 		else
 			{System.out.println("Wrong password");
-			return null;}
+			}
 		}
 		else
 		{
 			System.out.println("Does not exist");
-			return null;
 		}
+		return f1;
 	}
 	
 	@PostMapping("/registerfarmer")

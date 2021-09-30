@@ -20,6 +20,12 @@ public class FarmerSearchServicesImpl implements FarmerSearchServices{
 		// TODO Auto-generated method stub
 		return repository.findByFarmerName(name);
 	}
+	
+	@Override
+	public List<Farmer> getAllFarmers() {
+		// TODO Auto-generated method stub
+		return repository.findAll();
+	}
 
 	@Override
 	public List<Farmer> filterByAge(int age) {

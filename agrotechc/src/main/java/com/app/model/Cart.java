@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Cart {
 @Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
+@GeneratedValue(strategy = GenerationType.AUTO)
 private int cartId;
 @ManyToOne
 @JoinColumn(name = "farmerId") //a foreign key by name farmerId

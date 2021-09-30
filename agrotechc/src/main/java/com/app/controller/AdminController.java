@@ -3,6 +3,7 @@ package com.app.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import com.app.model.Farmer;
 import com.app.model.Information;
 import com.app.model.Orders;
 import com.app.model.Products;
+import com.app.model.Queries;
 import com.app.service.AdminCrudServices;
 import com.app.service.CompaniesCrudServices;
 import com.app.service.FarmerCrudServices;
@@ -26,6 +28,7 @@ import com.app.service.InformationCrudServices;
 import com.app.service.OrdersCrudServices;
 import com.app.service.ProductCrudServices;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/admins")
 public class AdminController {
@@ -52,7 +55,7 @@ public class AdminController {
 		Admins a=aservice.getAccountInfo(user.getId());
 		if(a!=null)
 		{
-		if((user.getId()==a.getId()) && (user.getPassword().equals(a.getPassword())))
+		if((user.getId().equals(a.getId())) && (user.getPassword().equals(a.getPassword())))
 			return a;
 		else
 			{System.out.println("Wrong password");
@@ -108,6 +111,11 @@ public class AdminController {
 		return oservice.getAllOrders();
 	}
 	
+	@GetMapping("/getallfarmers")
+	public List<Farmer> getAllFarmers(){
+		return fsearchservice.getAllFarmers();
+	}
+	
 	@GetMapping("/getfarmersbyname/{name}")
 	public List<Farmer> getFarmersByName(@PathVariable String name){
 		return fsearchservice.filterByName(name);
@@ -126,7 +134,11 @@ public class AdminController {
 		return fsearchservice.filterByGender(gender);
 	}
 	
-	
+//	@PostMapping("/giveanswer/{queryid}")
+//	public void giveAnswer(@PathVariable int queryid, @RequestBody Queries q)
+//	{
+//		
+//	}
 	
 	
 	

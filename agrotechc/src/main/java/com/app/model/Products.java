@@ -21,13 +21,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Products {
 @Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
+@GeneratedValue(strategy = GenerationType.AUTO)
 private int productId;
 private String productName;
 private double productPrice;
-private String quantity;
+private String productQuantity;
 private String productCompanyName;
-private String image;
+private String productImage;
 @OneToMany(mappedBy = "productOrder")
 private List<Orders> orderList=new ArrayList<>();
 @OneToMany(mappedBy = "productcart")

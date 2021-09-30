@@ -23,9 +23,9 @@ public class Companies {
 @GeneratedValue(strategy = GenerationType.AUTO)
 private int companyId;
 private String companyName;
-private String Cropquantity;
-private String CropName;
-private double Cropprice;
+private String companyImage;
+private String cropName;
+private double cropPrice;
 private String contactNumber;
 //@ManyToOne
 //@JoinColumn(name = "cropId") //here creates a foreign key named cropid

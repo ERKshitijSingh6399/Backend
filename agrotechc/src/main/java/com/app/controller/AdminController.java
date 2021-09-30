@@ -2,6 +2,7 @@ package com.app.controller;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,6 +28,7 @@ import com.app.service.FarmerSearchServices;
 import com.app.service.InformationCrudServices;
 import com.app.service.OrdersCrudServices;
 import com.app.service.ProductCrudServices;
+import com.app.service.QueryCrudServices;
 
 @CrossOrigin
 @RestController
@@ -48,6 +50,10 @@ public class AdminController {
 	private  OrdersCrudServices oservice;
 	@Autowired
 	private FarmerSearchServices fsearchservice;
+	@Autowired
+	private QueryCrudServices qservice;
+	
+	private static Logger logac = Logger.getLogger(AdminController.class);
 	
 	@PostMapping("/adminlogin")
 	public Admins checkadminlogincredentials(@RequestBody Admins user)
@@ -58,22 +64,18 @@ public class AdminController {
 		if((user.getId().equals(a.getId())) && (user.getPassword().equals(a.getPassword())))
 			return a;
 		else
-			{System.out.println("Wrong password");
+			{logac.warn("Wrong password");
 			return null;}
 		}
 		else
 		{
-			System.out.println("Does not exist");
+			logac.warn("Does not exist");
 			return null;
 		}
 	}
 	
-	@DeleteMapping("/deletefarmer/{id}")
-	public void deleteFarmer(@PathVariable int id) {
-		// TODO Auto-generated method stub
-		service.deleteFarmer(id);
-		System.out.println("Deleted Successfully");
-	}
+	//**********************Product Crud Methods************************************************************
+	
 	@GetMapping("/getallproducts")
 	public List<Products> getAllProducts() {
 		// TODO Auto-generated method stub
@@ -82,35 +84,51 @@ public class AdminController {
 	@PostMapping("/addproduct")
 	public Products addProduct(@RequestBody Products product)
 	{
+		logac.info("Adding Product= "+product.getProductId());
 		return pservice.addProduct(product);
 	}
+
+	//********************Information Crud Methods***********************************************************
 	
 	@PostMapping("/addinformation")
 	public Information addInformation(@RequestBody Information information) {
-		// TODO Auto-generated method stub
+		logac.info("Adding Information= "+information.getId());
 		return iservice.addInformationLinks(information);
 	}
 	@PutMapping("/updateinformation")
 	public Information updateInformation(@RequestBody Information information) {
-		// TODO Auto-generated method stub
+		logac.info("Updating Information= "+information.getId());
 		return iservice.updateInformationLinks(information);
 	}
+	
+	//********************Companies Crud Methods***********************************************************
+	
 	@PostMapping("/addcompanydemand")
 	public Companies addCompany(@RequestBody Companies companies)
 	{
 		return cmpservice.addCompanyDemandItem(companies);
 	}
+	
 	@DeleteMapping("/deletecompanydemand/{id}")
 	public void deleteCompany(@PathVariable int companyid) {
 		// TODO Auto-generated method stub
 		cmpservice.deleteCompanyDemandItem(companyid);;
 	}
 	
+	//********************Orders Status method*********************************************************
 	@GetMapping("/allorderstatus")
 	public List<Orders> getAllOrders() {
 		return oservice.getAllOrders();
 	}
 	
+	//********************Farmer Crud Methods***********************************************************
+	
+	@DeleteMapping("/deletefarmer/{id}")
+	public void deleteFarmer(@PathVariable int id) {
+		// TODO Auto-generated method stub
+		service.deleteFarmer(id);
+		logac.info("Deleted Farmer= "+id+" Successfully");
+	}
 	@GetMapping("/getallfarmers")
 	public List<Farmer> getAllFarmers(){
 		return fsearchservice.getAllFarmers();
@@ -134,11 +152,15 @@ public class AdminController {
 		return fsearchservice.filterByGender(gender);
 	}
 	
-//	@PostMapping("/giveanswer/{queryid}")
-//	public void giveAnswer(@PathVariable int queryid, @RequestBody Queries q)
-//	{
-//		
-//	}
+	
+	//********************Query Crud Methods***********************************************************
+	
+	@PutMapping("/giveanswer")
+	public Queries giveAnswer(@RequestBody Queries query)
+	{
+		logac.info("Giving Answer to Query= "+query.getQueryId());
+		return qservice.addQuery(query);
+	}
 	
 	
 	

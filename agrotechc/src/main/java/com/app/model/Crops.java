@@ -24,6 +24,6 @@ public class Crops {
 @GeneratedValue(strategy = GenerationType.AUTO)
 private int cropId;
 private String cropName;
-@OneToMany(mappedBy = "crop")
-private List<Companies> companyList=new ArrayList<>();
+//@OneToMany(mappedBy = "crop")
+//private List<Companies> companyList=new ArrayList<>();
 }

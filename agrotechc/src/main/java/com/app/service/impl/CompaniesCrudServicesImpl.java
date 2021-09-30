@@ -1,5 +1,7 @@
 package com.app.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,9 +28,9 @@ public class CompaniesCrudServicesImpl implements CompaniesCrudServices{
 	}
 
 	@Override
-	public Companies getAllCompanyDemandItems(int companyid) {
+	public List<Companies> getAllCompanyDemandItems() {
 		// TODO Auto-generated method stub
-		return repository.findById(companyid).get();
+		return repository.findAll();
 	}
 
 	@Override

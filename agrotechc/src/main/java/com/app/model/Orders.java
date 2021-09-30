@@ -28,4 +28,11 @@ private Farmer farmerOrder;
 @ManyToOne
 @JoinColumn(name = "productId")
 private Products productOrder;
+
+public void setFarmerOrder(Farmer f) {
+	this.farmerOrder = f;
+}
+public void setProductOrder(Products p) {
+	this.productOrder = p;
+}
 }

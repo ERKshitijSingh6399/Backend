@@ -99,8 +99,8 @@ public class Controller {
 		// TODO Auto-generated method stub
 		return iservice.getAllInformation();
 	}
-	@GetMapping("/myorderstatus")
-	public List<Orders> getAllOrders(int id) {
+	@GetMapping("/myorderstatus/{id}")
+	public List<Orders> getAllOrders(@PathVariable int id) {
 		return oservice.getOrdersByFarmerId(service.getAccountInfo(id));
 	}
 	
@@ -142,8 +142,14 @@ public class Controller {
 		Cart c=cservice.getCartInfo(cartid);
 		Orders o=new Orders();
 		o.setOrdersStatus("OnItsWay");
-		o.setFarmerOrder(c.getFarmerCart());
-		o.setProductOrder(c.getProductcart());
+		Farmer f1=new Farmer();
+		Products p1=new Products();
+		Farmer f2=c.getFarmerCart();
+		Products p2=c.getProductCart();
+		f1.setFarmerId(f2.getFarmerId());
+		p1.setProductId(p2.getProductId());
+		o.setFarmerOrder(f1);
+		o.setProductOrder(p1);
 		cservice.deleteCartItem(cartid);
 		return oservice.addOrder(o);
 	}

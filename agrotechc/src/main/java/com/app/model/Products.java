@@ -30,6 +30,6 @@ private String productCompanyName;
 private String productImage;
 @OneToMany(mappedBy = "productOrder")
 private List<Orders> orderList=new ArrayList<>();
-@OneToMany(mappedBy = "productcart")
+@OneToMany(mappedBy = "productCart")
 private List<Cart> cartList=new ArrayList<>();
 }

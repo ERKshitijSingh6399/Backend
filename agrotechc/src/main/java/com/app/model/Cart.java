@@ -29,5 +29,12 @@ private Farmer farmerCart;
 
 @ManyToOne
 @JoinColumn(name = "productId")
-private Products productcart;
+private Products productCart;
+
+public Farmer getFarmerCart() {
+	return this.farmerCart;
+}
+public Products getProductCart() {
+	return this.productCart;
+}
 }

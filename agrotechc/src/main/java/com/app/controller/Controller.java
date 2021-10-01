@@ -63,13 +63,15 @@ public class Controller {
 		if((user.getEmail().equals(f.getEmail())) && (user.getPassword().equals(f.getPassword())))
 			f1=f;
 		else
-			{logc.warn("Wrong password");
-			}
+		{
+		logc.warn("Wrong password");
+		throw new Exception("Wrong password");		
+		}
 		}
 		else
 		{
 			logc.warn("Does not exist");
-			throw new BuisnessException("Invalid Login Credentials");
+			throw new Exception("Does not exist");
 		}
 		return f1;
 	}

@@ -65,8 +65,10 @@ public class AdminController {
 		if((user.getId().equals(a.getId())) && (user.getPassword().equals(a.getPassword())))
 			return a;
 		else
-			{logac.warn("Wrong password");
-			return null;}
+			{
+			logac.warn("Wrong password");
+			throw new BuisnessException("Wrong password");
+			}
 		}
 		else
 		{

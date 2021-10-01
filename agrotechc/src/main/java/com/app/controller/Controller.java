@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.buisnessexception.BuisnessException;
 import com.app.model.Cart;
 import com.app.model.Farmer;
 import com.app.model.Information;
@@ -68,6 +69,7 @@ public class Controller {
 		else
 		{
 			logc.warn("Does not exist");
+			throw new BuisnessException("Invalid Login Credentials");
 		}
 		return f1;
 	}

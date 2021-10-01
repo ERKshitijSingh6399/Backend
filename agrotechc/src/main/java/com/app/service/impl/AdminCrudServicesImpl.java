@@ -1,5 +1,9 @@
 package com.app.service.impl;
 
+import java.util.List;
+
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,6 +12,7 @@ import com.app.repository.AdminRepository;
 import com.app.service.AdminCrudServices;
 
 @Service
+@Transactional
 public class AdminCrudServicesImpl implements AdminCrudServices{
 
 	@Autowired
@@ -29,6 +34,12 @@ public class AdminCrudServicesImpl implements AdminCrudServices{
 	public Admins getAccountInfo(String adminid) {
 		// TODO Auto-generated method stub
 		return repository.findByAdminId(adminid);
+	}
+
+	@Override
+	public List<Admins> getAllAdmins() {
+		// TODO Auto-generated method stub
+		return repository.findAll();
 	}
 
 }

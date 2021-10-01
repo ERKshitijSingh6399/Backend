@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.buisnessexception.BuisnessException;
 import com.app.model.Admins;
 import com.app.model.Companies;
 import com.app.model.Farmer;
@@ -56,7 +57,7 @@ public class AdminController {
 	private static Logger logac = Logger.getLogger(AdminController.class);
 	
 	@PostMapping("/adminlogin")
-	public Admins checkadminlogincredentials(@RequestBody Admins user)
+	public Admins checkadminlogincredentials(@RequestBody Admins user) throws Exception
 	{
 		Admins a=aservice.getAccountInfo(user.getId());
 		if(a!=null)
@@ -70,7 +71,7 @@ public class AdminController {
 		else
 		{
 			logac.warn("Does not exist");
-			return null;
+			throw new BuisnessException("Invalid Login Credentials");
 		}
 	}
 	

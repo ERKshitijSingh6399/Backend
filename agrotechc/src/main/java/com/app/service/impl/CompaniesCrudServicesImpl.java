@@ -2,6 +2,8 @@ package com.app.service.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,7 @@ import com.app.repository.CompaniesRepository;
 import com.app.service.CompaniesCrudServices;
 
 @Service
+@Transactional
 public class CompaniesCrudServicesImpl implements CompaniesCrudServices{
 
 	@Autowired

@@ -1,5 +1,7 @@
 package com.app.service.impl;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,6 +10,7 @@ import com.app.repository.CropsRepository;
 import com.app.service.CropsCrudServices;
 
 @Service
+@Transactional
 public class CropsCrudServicesImpl implements CropsCrudServices{
 	
 	@Autowired

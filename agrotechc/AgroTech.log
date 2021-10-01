@@ -1,0 +1,5 @@
+[http-nio-9100-exec-6] 2021-09-30 17:15:02 INFO  com.app.controller.AdminController  - Adding Product= 0
+[http-nio-9100-exec-9] 2021-09-30 17:15:27 INFO  com.app.controller.AdminController  - Adding Product= 0
+[http-nio-9100-exec-1] 2021-09-30 17:16:03 INFO  com.app.controller.Controller  - Getting list of all products
+[http-nio-9100-exec-8] 2021-09-30 17:16:11 INFO  com.app.controller.Controller  - Getting list of all products
+[http-nio-9100-exec-5] 2021-10-01 10:57:17 INFO  com.app.controller.Controller  - Registered Successfully
